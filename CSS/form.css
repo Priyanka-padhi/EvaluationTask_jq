@@ -1,0 +1,66 @@
+.asterisk::after {
+  content: "*";
+  color: red;
+}
+
+.row {
+  margin: 25px;
+}
+
+.page {
+  margin-top: 20px;
+   background-color: rgb(158, 154, 154);
+  border-style: solid;
+  
+}
+
+label.error {
+  color: red;
+  font-size: 13px;
+}
+.text {
+  color: red;
+}
+
+.submit {
+  border: none;
+  color: black;
+  padding: 8px 35px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: -15px;
+
+}
+
+.textfield {
+  padding: 6px;
+  margin-top: 9px;
+}
+
+.txt {
+  padding: 15px;
+}
+
+.display_Table {
+  border: 2px solid black;
+  
+
+}
+table, td, th {  
+  border: 1px solid ;
+  text-align: left;
+ }
+
+table {
+  width: 60%;
+}
+th, td {
+  padding: 15px;
+}
+.set {
+  font-size: 12px;
+  padding-left: 14px;
+}
