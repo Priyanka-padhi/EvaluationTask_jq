@@ -6,6 +6,7 @@ $(document).ready(function () {
       Name: {
         required: true,
         minlength: 2,
+        maxlength:30,
         name_val: true
       },
       age: {
@@ -19,8 +20,6 @@ $(document).ready(function () {
       },
       phone: {
         required: true,
-        minlength: 10,
-        maxlength: 10,
         phone_val: true
       },
       gender: {
