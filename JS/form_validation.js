@@ -20,7 +20,9 @@ $(document).ready(function () {
       },
       phone: {
         required: true,
-        phone_val: true
+        phone_val: true,
+        minlength:10,
+        maxlength:10
       },
       gender: {
         required: true
@@ -48,6 +50,9 @@ $(document).ready(function () {
       },
       pickupTime7: {
         required: true
+      },
+      config:{
+        required:true
       }
     },
     errorPlacement: function (error, element) {
@@ -63,10 +68,10 @@ $(document).ready(function () {
     }
   })
 
-  // validators
+  // validators   
   $.validator.addMethod('name_val', function (value) {
-    return /^[a-zA-Z ]*$/.test(value);
-  }, 'The field can only contains alphabets and space');
+    return /^[^ ][a-zA-Z]+(\s{0,1}[a-zA-Z]\s{0,1})*$/.test(value);
+  }, 'Please enter a valid name');
   $.validator.addMethod('email_val', function (value) {
     return /([a-zA-Z0-9]+)([\.{1}])?([a-zA-Z0-9]+)\@tntra([\.])io/.test(value);
   }, 'You need to have tntra domain address');
@@ -104,7 +109,21 @@ $(document).on('click', '.day input[type=checkbox]', function (event) {
 
 $("#form").submit(function (event) {
   event.preventDefault();
+localStorage.clear();
+//validation for dropdown
 
+if($('.day input[type=checkbox]').is(":checked")){
+  var flag = true;
+}
+else{
+  flag = false;
+}
+for (let i = 1; i < 8; i++) {
+  if ($('#pickupTime' + i).parent().parent().children('.day').children().children().is(':checked') && $('#pickupTime' + i).val() == "") {
+    // if the days checkbox is checked and the value of pickupTime is null then  flag will be set at false
+    flag = false;
+  }
+}
 
 
   let Name = $('#Name').val();
@@ -125,26 +144,10 @@ $("#form").submit(function (event) {
     $('#email').valid() &&
     $('#phone').valid() &&
     $('input[name=gender]:checked') != undefined &&
-    $('#nextday').prop('checked', true) &&
-    sunday != "" ||
-    monday != "" ||
-    tuesday != "" ||
-    wednesday != "" ||
-    thursday != "" ||
-    friday != "" ||
-    saturday != ""
-  ) {
-    //validation for dropdown
-    var flag = true;
-    for (let i = 1; i < 8; i++) {
-      if ($('#pickupTime' + i).parent().parent().children('.day').children().children().is(':checked') && $('#pickupTime' + i).val() == "") {
-        // if the days checkbox is checked and the value of pickupTime is null then  flag will be set at false
-        flag = false;
-      }
-    }
-
-    if (flag == true) {
-
+    $('#config').valid() &&
+    flag)
+  {
+    
       console.log({
         Name, age, phone, email, gender, sunday, monday, tuesday, wednesday, thursday, friday, saturday
       })
@@ -170,7 +173,7 @@ $("#form").submit(function (event) {
       console.log('userdata', userdata);
       window.open('../HTML/formData_display.html')
     }
-  }
+  
 
 });
 
